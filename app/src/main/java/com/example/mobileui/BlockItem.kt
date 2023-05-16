@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -33,6 +34,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -58,26 +60,23 @@ fun AssignBlock() {
     Box(
         modifier = Modifier
             .background(
-                color = Color.Red,
+                color = Color(0xFFF44336),
                 shape = RoundedCornerShape(12.dp),
-            ).border(
+            )
+            .border(
                 width = 3.dp, color = Color.White,
                 shape = RoundedCornerShape(12.dp),
             )
             .padding(10.dp)
-
-
     ) {
         Row(
-            modifier = Modifier.background(color = Color.Red),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
 
             TextField(
                 modifier = Modifier
-                    .width(70.dp)
-                    .height(50.dp),
+                    .widthIn(50.dp),
                 value = inputVar.value,
                 shape = RoundedCornerShape(8.dp),
                 colors = TextFieldDefaults.textFieldColors(
@@ -99,8 +98,7 @@ fun AssignBlock() {
             )
             TextField(
                 modifier = Modifier
-                    .width(70.dp)
-                    .height(50.dp),
+                    .widthIn(50.dp),
                 value = inputData.value,
                 shape = RoundedCornerShape(8.dp),
                 colors = TextFieldDefaults.textFieldColors(
@@ -114,4 +112,173 @@ fun AssignBlock() {
             )
         }
     }
+}
+@OptIn(ExperimentalMaterial3Api::class)
+@Preview
+@Composable
+fun inputBlock(){
+    var inputData = remember{ mutableStateOf("") }
+    Row(
+        modifier = Modifier
+            .background(
+                color = Color(0xFF3F51B5),
+                shape = RoundedCornerShape(12.dp),
+            )
+            .border(
+                width = 3.dp, color = Color.White,
+                shape = RoundedCornerShape(12.dp),
+            )
+            .padding(10.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ){
+        Text(
+            modifier = Modifier.padding(10.dp),
+            text = "Input :",
+            fontSize = 22.sp,
+            color = Color.White,
+
+            fontWeight = FontWeight.ExtraBold
+        )
+        TextField(
+            modifier = Modifier
+                .widthIn(50.dp),
+            value = inputData.value,
+            shape = RoundedCornerShape(8.dp),
+            colors = TextFieldDefaults.textFieldColors(
+                cursorColor = Color.LightGray,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent
+            ),
+            onValueChange = { newText -> inputData.value = newText
+            },
+            singleLine = true
+        )
+    }
+}
+@OptIn(ExperimentalMaterial3Api::class)
+@Preview
+@Composable
+fun printBlock(){
+    var inputData = remember{ mutableStateOf("") }
+    Row(
+        modifier = Modifier
+            .background(
+                color = Color(0xFF80C058),
+                shape = RoundedCornerShape(12.dp),
+            )
+            .border(
+                width = 3.dp, color = Color.White,
+                shape = RoundedCornerShape(12.dp),
+            )
+            .padding(10.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ){
+        Text(
+            modifier = Modifier.padding(10.dp),
+            text = "Print :",
+            fontSize = 22.sp,
+            color = Color.White,
+
+            fontWeight = FontWeight.ExtraBold
+        )
+        TextField(
+            modifier = Modifier
+                .widthIn(50.dp),
+            value = inputData.value,
+            shape = RoundedCornerShape(8.dp),
+            colors = TextFieldDefaults.textFieldColors(
+                cursorColor = Color.LightGray,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent
+            ),
+            onValueChange = { newText -> inputData.value = newText
+            },
+            singleLine = true
+        )
+    }
+}
+@OptIn(ExperimentalMaterial3Api::class)
+@Preview
+@Composable
+fun ConditionBlock(){
+    var condition = remember{ mutableStateOf("") }
+    Column(
+        modifier = Modifier
+            .background(
+                color = Color(0xFFFF9800),
+                shape = RoundedCornerShape(12.dp),
+            )
+            .border(
+                width = 3.dp, color = Color.White,
+                shape = RoundedCornerShape(12.dp),
+            )
+            .padding(10.dp),
+        horizontalAlignment = Alignment.Start
+    ){
+        Row(
+            modifier = Modifier.padding(bottom = 10.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ){
+            Text(
+                modifier = Modifier.padding(10.dp),
+                text = "If",
+                fontSize = 22.sp,
+                color = Color.White,
+
+                fontWeight = FontWeight.ExtraBold
+            )
+            Box(
+                modifier = Modifier
+                    .width(200.dp)
+                    .height(50.dp)
+                    .background(
+                        color = Color.White,
+                        shape = RoundedCornerShape(30.dp)
+                    )
+            ){}
+        }
+        Row(verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ){
+            Box(
+                modifier = Modifier
+                    .width(200.dp)
+                    .height(50.dp)
+                    .background(
+                        color = Color.White,
+                        shape = RoundedCornerShape(10.dp)
+                    )
+            ){}
+        }
+        Row(
+            modifier = Modifier.padding(bottom = 10.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                modifier = Modifier.padding(10.dp),
+                text = "else:",
+                fontSize = 22.sp,
+                color = Color.White,
+
+                fontWeight = FontWeight.ExtraBold
+            )
+        }
+        Row(verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ){
+            Box(
+                modifier = Modifier
+                    .width(200.dp)
+                    .height(50.dp)
+                    .background(
+                        color = Color.White,
+                        shape = RoundedCornerShape(10.dp)
+                    )
+            ){}
+        }
+
+    }
+
 }
