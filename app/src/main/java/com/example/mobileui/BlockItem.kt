@@ -2,20 +2,28 @@ package com.example.mobileui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -44,10 +52,11 @@ fun variableBlock(){
                 shape = RoundedCornerShape(12.dp),
             )
             .padding(10.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
     ){
         Text(
-            modifier = Modifier.padding(10.dp),
+            modifier = Modifier.padding(end=10.dp),
             text = "Var",
             fontSize = 22.sp,
             color = Color.White,
@@ -62,13 +71,8 @@ fun variableBlock(){
             colors = TextFieldDefaults.textFieldColors(
                 cursorColor = Color.LightGray,
                 focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
+                unfocusedIndicatorColor = Color.Transparent,
             ),
-            placeholder = {
-                Text(text = "variable", fontSize = 20.sp,
-                    fontWeight = FontWeight.W400,
-                    color = Color.Gray, textAlign = TextAlign.Center
-                ) },
             onValueChange = { newText -> inputData.value = newText
             },
             singleLine = true
@@ -109,11 +113,6 @@ fun assignBlock() {
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent
                 ),
-                placeholder = {
-                    Text(text = "variable", fontSize = 20.sp,
-                        fontWeight = FontWeight.W400,
-                        color = Color.Gray, textAlign = TextAlign.Center
-                    ) },
                 onValueChange = { newText -> inputVar.value = newText
                 },
                 singleLine = true
@@ -136,11 +135,6 @@ fun assignBlock() {
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent
                 ),
-                placeholder = {
-                    Text(text = "value", fontSize = 20.sp,
-                        fontWeight = FontWeight.W400,
-                        color = Color.Gray, textAlign = TextAlign.Center
-                    ) },
                 onValueChange = { newText -> inputData.value = newText
                 },
                 singleLine = true,
@@ -167,7 +161,7 @@ fun inputBlock(){
         verticalAlignment = Alignment.CenterVertically
     ){
         Text(
-            modifier = Modifier.padding(10.dp),
+            modifier = Modifier.padding(end=10.dp),
             text = "Input",
             fontSize = 22.sp,
             color = Color.White,
@@ -211,7 +205,7 @@ fun operationBlock(){
         verticalAlignment = Alignment.CenterVertically
     ){
         Text(
-            modifier = Modifier.padding(10.dp),
+            modifier = Modifier.padding(end=10.dp),
             text = "Operation",
             fontSize = 22.sp,
             color = Color.White,
@@ -253,7 +247,7 @@ fun printBlock(){
         verticalAlignment = Alignment.CenterVertically
     ){
         Text(
-            modifier = Modifier.padding(10.dp),
+            modifier = Modifier.padding(end=10.dp),
             text = "Print",
             fontSize = 22.sp,
             color = Color.White,
