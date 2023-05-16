@@ -1,42 +1,22 @@
 package com.example.mobileui
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.gestures.scrollable
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -44,11 +24,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.graphics.Color.Companion.Blue
-
+import androidx.compose.ui.text.style.TextAlign
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -87,6 +64,11 @@ fun variableBlock(){
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent
             ),
+            placeholder = {
+                Text(text = "variable", fontSize = 20.sp,
+                    fontWeight = FontWeight.W400,
+                    color = Color.Gray, textAlign = TextAlign.Center
+                ) },
             onValueChange = { newText -> inputData.value = newText
             },
             singleLine = true
@@ -96,7 +78,7 @@ fun variableBlock(){
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
-fun AssignBlock() {
+fun assignBlock() {
     var inputVar = remember{ mutableStateOf("") }
     var inputData = remember{ mutableStateOf("") }
 
@@ -127,6 +109,11 @@ fun AssignBlock() {
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent
                 ),
+                placeholder = {
+                    Text(text = "variable", fontSize = 20.sp,
+                        fontWeight = FontWeight.W400,
+                        color = Color.Gray, textAlign = TextAlign.Center
+                    ) },
                 onValueChange = { newText -> inputVar.value = newText
                 },
                 singleLine = true
@@ -149,6 +136,11 @@ fun AssignBlock() {
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent
                 ),
+                placeholder = {
+                    Text(text = "value", fontSize = 20.sp,
+                        fontWeight = FontWeight.W400,
+                        color = Color.Gray, textAlign = TextAlign.Center
+                    ) },
                 onValueChange = { newText -> inputData.value = newText
                 },
                 singleLine = true,
@@ -287,7 +279,7 @@ fun printBlock(){
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
-fun ConditionBlock(){
+fun conditionBlock(){
     var condition = remember{ mutableStateOf("") }
     Column(
         modifier = Modifier
@@ -333,7 +325,7 @@ fun ConditionBlock(){
                     .width(200.dp)
                     .height(50.dp)
                     .background(
-                        color = Color.White,
+                        color = Color(0xFFFDA728),
                         shape = RoundedCornerShape(10.dp)
                     )
             ){}
@@ -344,8 +336,8 @@ fun ConditionBlock(){
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                modifier = Modifier.padding(10.dp),
-                text = "else:",
+                modifier = Modifier.padding(start=10.dp,top=10.dp),
+                text = "Else",
                 fontSize = 22.sp,
                 color = Color.White,
 
@@ -360,7 +352,7 @@ fun ConditionBlock(){
                     .width(200.dp)
                     .height(50.dp)
                     .background(
-                        color = Color.White,
+                        color = Color(0xFFFDA728),
                         shape = RoundedCornerShape(10.dp)
                     )
             ){}

@@ -7,22 +7,16 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -44,7 +38,8 @@ fun MainScreen(
         DropItem<BlockUiItem>(//поле для сброса блоков
             modifier = Modifier
                 .fillMaxWidth(1f)
-                .fillMaxHeight(0.75f)
+                .fillMaxHeight(0.75f),
+
         ) { isInBound, blockItem ->
             if(blockItem != null){
                 LaunchedEffect(key1 = blockItem){
@@ -66,10 +61,10 @@ fun MainScreen(
                     mainViewModel.addedBlocks.forEach { block ->//нужно будет из addedBlocks получить строковый контент в блоках
                         when(block.id){
                             "1"-> variableBlock()
-                            "2"-> AssignBlock()
+                            "2"-> assignBlock()
                             "3"-> operationBlock()
                             "4"-> printBlock()
-                            "5"-> ConditionBlock()
+                            "5"-> conditionBlock()
                         }
                         Spacer(modifier = Modifier.padding(1.dp))
                     }
@@ -88,10 +83,10 @@ fun MainScreen(
                     mainViewModel.addedBlocks.forEach { block ->
                         when(block.id){
                             "1"-> variableBlock()
-                            "2"-> AssignBlock()
+                            "2"-> assignBlock()
                             "3"-> operationBlock()
                             "4"-> printBlock()
-                            "5"-> ConditionBlock()
+                            "5"-> conditionBlock()
                         }
                         Spacer(modifier = Modifier.padding(1.dp))
                     }
@@ -118,7 +113,8 @@ fun MainScreen(
                             .clip(RoundedCornerShape(15.dp))
                             .shadow(5.dp, RoundedCornerShape(15.dp))
                             .background(block.backgroundColor, RoundedCornerShape(15.dp)),
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
                     ){
                         Text(
                             modifier = Modifier.padding(10.dp),

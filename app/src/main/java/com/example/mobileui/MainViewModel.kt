@@ -7,13 +7,8 @@ import androidx.lifecycle.ViewModel
 class MainViewModel :ViewModel() {
 
     var isCurrentlyDragging by mutableStateOf(false)
-        private set
-
     var items by mutableStateOf(emptyList<BlockUiItem>())
-        private set
-
     var addedBlocks = mutableStateListOf<BlockUiItem>()
-        private set
 
     init {
         items = listOf(
