@@ -17,11 +17,10 @@ class MainViewModel :ViewModel() {
 
     init {
         items = listOf(
-            BlockUiItem("Assingment","0", Color(0xFFF44336)),
-            BlockUiItem("Input","1", Color(0xFF3F51B5)),
-            BlockUiItem("Operation", "2",Color(0xFF44AC48)),
-            BlockUiItem("Variable", "3",Color(0xFF2196F3)),
-            BlockUiItem("Print", "4",Color(0xFF80C058)),
+            BlockUiItem("Variable", "1",Color(0xFF673AB7)),
+            BlockUiItem("Assingment","2", Color(0xFFF44336)),
+            BlockUiItem("Operation", "3",Color(0xFF44AC48)),
+            BlockUiItem("Print", "4",Color(0xFF03A9F4)),
             BlockUiItem("Conditions", "5",Color(0xFFFF9800)),
         )
     }

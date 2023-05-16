@@ -65,10 +65,11 @@ fun MainScreen(
                 ){
                     mainViewModel.addedBlocks.forEach { block ->//нужно будет из addedBlocks получить строковый контент в блоках
                         when(block.id){
-                            "0"-> AssignBlock()
-                            "1"-> inputBlock()
+                            "1"-> variableBlock()
+                            "2"-> AssignBlock()
+                            "3"-> operationBlock()
                             "4"-> printBlock()
-                            else -> ConditionBlock()
+                            "5"-> ConditionBlock()
                         }
                         Spacer(modifier = Modifier.padding(1.dp))
                     }
@@ -86,10 +87,11 @@ fun MainScreen(
                 ){
                     mainViewModel.addedBlocks.forEach { block ->
                         when(block.id){
-                            "0"-> AssignBlock()
-                            "1"-> inputBlock()
+                            "1"-> variableBlock()
+                            "2"-> AssignBlock()
+                            "3"-> operationBlock()
                             "4"-> printBlock()
-                            else -> ConditionBlock()
+                            "5"-> ConditionBlock()
                         }
                         Spacer(modifier = Modifier.padding(1.dp))
                     }
@@ -109,14 +111,14 @@ fun MainScreen(
                     dataToDrop = block ,
                     viewModel = mainViewModel
                 ) {
-                    Row(
+                    Column(
                         modifier = Modifier
                             .widthIn(100.dp)
                             .height(50.dp)
                             .clip(RoundedCornerShape(15.dp))
                             .shadow(5.dp, RoundedCornerShape(15.dp))
                             .background(block.backgroundColor, RoundedCornerShape(15.dp)),
-                        verticalAlignment = Alignment.CenterVertically
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ){
                         Text(
                             modifier = Modifier.padding(10.dp),

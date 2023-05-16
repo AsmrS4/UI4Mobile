@@ -50,6 +50,49 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color.Companion.Blue
 
 
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Preview
+@Composable
+fun variableBlock(){
+    var inputData = remember{ mutableStateOf("") }
+    Row(
+        modifier = Modifier
+            .background(
+                color = Color(0xFF673AB7),
+                shape = RoundedCornerShape(12.dp),
+            )
+            .border(
+                width = 3.dp, color = Color.White,
+                shape = RoundedCornerShape(12.dp),
+            )
+            .padding(10.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ){
+        Text(
+            modifier = Modifier.padding(10.dp),
+            text = "Var",
+            fontSize = 22.sp,
+            color = Color.White,
+
+            fontWeight = FontWeight.ExtraBold
+        )
+        TextField(
+            modifier = Modifier
+                .widthIn(50.dp),
+            value = inputData.value,
+            shape = RoundedCornerShape(8.dp),
+            colors = TextFieldDefaults.textFieldColors(
+                cursorColor = Color.LightGray,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent
+            ),
+            onValueChange = { newText -> inputData.value = newText
+            },
+            singleLine = true
+        )
+    }
+}
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
@@ -133,7 +176,7 @@ fun inputBlock(){
     ){
         Text(
             modifier = Modifier.padding(10.dp),
-            text = "Input :",
+            text = "Input",
             fontSize = 22.sp,
             color = Color.White,
 
@@ -155,15 +198,17 @@ fun inputBlock(){
         )
     }
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
-fun printBlock(){
+fun operationBlock(){
+    var inputVar = remember{ mutableStateOf("") }
     var inputData = remember{ mutableStateOf("") }
     Row(
         modifier = Modifier
             .background(
-                color = Color(0xFF80C058),
+                color = Color(0xFF44AC48),
                 shape = RoundedCornerShape(12.dp),
             )
             .border(
@@ -175,7 +220,49 @@ fun printBlock(){
     ){
         Text(
             modifier = Modifier.padding(10.dp),
-            text = "Print :",
+            text = "Operation",
+            fontSize = 22.sp,
+            color = Color.White,
+
+            fontWeight = FontWeight.ExtraBold
+        )
+        TextField(
+            modifier = Modifier
+                .widthIn(50.dp),
+            value = inputVar.value,
+            shape = RoundedCornerShape(8.dp),
+            colors = TextFieldDefaults.textFieldColors(
+                cursorColor = Color.LightGray,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent
+            ),
+            onValueChange = { newText -> inputData.value = newText
+            },
+            singleLine = true
+        )
+    }
+}
+@OptIn(ExperimentalMaterial3Api::class)
+@Preview
+@Composable
+fun printBlock(){
+    var inputData = remember{ mutableStateOf("") }
+    Row(
+        modifier = Modifier
+            .background(
+                color = Color(0xFF03A9F4),
+                shape = RoundedCornerShape(12.dp),
+            )
+            .border(
+                width = 3.dp, color = Color.White,
+                shape = RoundedCornerShape(12.dp),
+            )
+            .padding(10.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ){
+        Text(
+            modifier = Modifier.padding(10.dp),
+            text = "Print",
             fontSize = 22.sp,
             color = Color.White,
 
