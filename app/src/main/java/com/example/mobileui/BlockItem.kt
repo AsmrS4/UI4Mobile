@@ -2,6 +2,7 @@ package com.example.mobileui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -37,10 +38,10 @@ import androidx.compose.ui.text.style.TextAlign
 
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview
+//@Preview
 @Composable
-fun variableBlock(){
-    var inputData = remember{ mutableStateOf("") }
+fun variableBlock() {
+    var inputData = remember { mutableStateOf("") }
     Row(
         modifier = Modifier
             .background(
@@ -54,10 +55,10 @@ fun variableBlock(){
             .padding(10.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
-    ){
+    ) {
         Text(
-            modifier = Modifier.padding(end=10.dp),
-            text = "Var",
+            modifier = Modifier.padding(end = 10.dp),
+            text = "var",
             fontSize = 22.sp,
             color = Color.White,
 
@@ -73,18 +74,20 @@ fun variableBlock(){
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
             ),
-            onValueChange = { newText -> inputData.value = newText
+            onValueChange = { newText ->
+                inputData.value = newText
             },
             singleLine = true
         )
     }
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun assignBlock() {
-    var inputVar = remember{ mutableStateOf("") }
-    var inputData = remember{ mutableStateOf("") }
+    var inputVar = remember { mutableStateOf("") }
+    var inputData = remember { mutableStateOf("") }
 
     Box(
         modifier = Modifier
@@ -113,7 +116,8 @@ fun assignBlock() {
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent
                 ),
-                onValueChange = { newText -> inputVar.value = newText
+                onValueChange = { newText ->
+                    inputVar.value = newText
                 },
                 singleLine = true
             )
@@ -135,18 +139,20 @@ fun assignBlock() {
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent
                 ),
-                onValueChange = { newText -> inputData.value = newText
+                onValueChange = { newText ->
+                    inputData.value = newText
                 },
                 singleLine = true,
             )
         }
     }
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
-fun inputBlock(){
-    var inputData = remember{ mutableStateOf("") }
+fun inputBlock() {
+    var inputData = remember { mutableStateOf("") }
     Row(
         modifier = Modifier
             .background(
@@ -159,10 +165,10 @@ fun inputBlock(){
             )
             .padding(10.dp),
         verticalAlignment = Alignment.CenterVertically
-    ){
+    ) {
         Text(
-            modifier = Modifier.padding(end=10.dp),
-            text = "Input",
+            modifier = Modifier.padding(end = 10.dp),
+            text = "input",
             fontSize = 22.sp,
             color = Color.White,
 
@@ -178,7 +184,8 @@ fun inputBlock(){
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent
             ),
-            onValueChange = { newText -> inputData.value = newText
+            onValueChange = { newText ->
+                inputData.value = newText
             },
             singleLine = true
         )
@@ -188,9 +195,8 @@ fun inputBlock(){
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
-fun operationBlock(){
-    var inputVar = remember{ mutableStateOf("") }
-    var inputData = remember{ mutableStateOf("") }
+fun operationBlock() {
+    var inputData = remember { mutableStateOf("") }
     Row(
         modifier = Modifier
             .background(
@@ -203,52 +209,10 @@ fun operationBlock(){
             )
             .padding(10.dp),
         verticalAlignment = Alignment.CenterVertically
-    ){
+    ) {
         Text(
-            modifier = Modifier.padding(end=10.dp),
-            text = "Operation",
-            fontSize = 22.sp,
-            color = Color.White,
-
-            fontWeight = FontWeight.ExtraBold
-        )
-        TextField(
-            modifier = Modifier
-                .widthIn(50.dp),
-            value = inputVar.value,
-            shape = RoundedCornerShape(8.dp),
-            colors = TextFieldDefaults.textFieldColors(
-                cursorColor = Color.LightGray,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
-            ),
-            onValueChange = { newText -> inputData.value = newText
-            },
-            singleLine = true
-        )
-    }
-}
-@OptIn(ExperimentalMaterial3Api::class)
-@Preview
-@Composable
-fun printBlock(){
-    var inputData = remember{ mutableStateOf("") }
-    Row(
-        modifier = Modifier
-            .background(
-                color = Color(0xFF03A9F4),
-                shape = RoundedCornerShape(12.dp),
-            )
-            .border(
-                width = 3.dp, color = Color.White,
-                shape = RoundedCornerShape(12.dp),
-            )
-            .padding(10.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ){
-        Text(
-            modifier = Modifier.padding(end=10.dp),
-            text = "Print",
+            modifier = Modifier.padding(end = 10.dp),
+            text = "operation",
             fontSize = 22.sp,
             color = Color.White,
 
@@ -264,17 +228,63 @@ fun printBlock(){
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent
             ),
-            onValueChange = { newText -> inputData.value = newText
+            onValueChange = { newText ->
+                inputData.value = newText
             },
             singleLine = true
         )
     }
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
-fun conditionBlock(){
-    var condition = remember{ mutableStateOf("") }
+fun printBlock() {
+    var inputData = remember { mutableStateOf("") }
+    Row(
+        modifier = Modifier
+            .background(
+                color = Color(0xFF03A9F4),
+                shape = RoundedCornerShape(12.dp),
+            )
+            .border(
+                width = 3.dp, color = Color.White,
+                shape = RoundedCornerShape(12.dp),
+            )
+            .padding(10.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            modifier = Modifier.padding(end = 10.dp),
+            text = "print",
+            fontSize = 22.sp,
+            color = Color.White,
+
+            fontWeight = FontWeight.ExtraBold
+        )
+        TextField(
+            modifier = Modifier
+                .widthIn(50.dp),
+            value = inputData.value,
+            shape = RoundedCornerShape(8.dp),
+            colors = TextFieldDefaults.textFieldColors(
+                cursorColor = Color.LightGray,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent
+            ),
+            onValueChange = { newText ->
+                inputData.value = newText
+            },
+            singleLine = true
+        )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Preview
+@Composable
+fun conditionBlock() {
+    var condition = remember { mutableStateOf("") }
     Column(
         modifier = Modifier
             .background(
@@ -287,12 +297,12 @@ fun conditionBlock(){
             )
             .padding(10.dp),
         horizontalAlignment = Alignment.Start
-    ){
+    ) {
         Row(
             modifier = Modifier.padding(bottom = 10.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
-        ){
+        ) {
             Text(
                 modifier = Modifier.padding(10.dp),
                 text = "If",
@@ -309,11 +319,12 @@ fun conditionBlock(){
                         color = Color.White,
                         shape = RoundedCornerShape(30.dp)
                     )
-            ){}
+            ) {}
         }
-        Row(verticalAlignment = Alignment.CenterVertically,
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
-        ){
+        ) {
             Box(
                 modifier = Modifier
                     .width(200.dp)
@@ -322,7 +333,7 @@ fun conditionBlock(){
                         color = Color(0xFFFDA728),
                         shape = RoundedCornerShape(10.dp)
                     )
-            ){}
+            ) {}
         }
         Row(
             modifier = Modifier.padding(bottom = 10.dp),
@@ -330,7 +341,7 @@ fun conditionBlock(){
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                modifier = Modifier.padding(start=10.dp,top=10.dp),
+                modifier = Modifier.padding(start = 10.dp, top = 10.dp),
                 text = "Else",
                 fontSize = 22.sp,
                 color = Color.White,
@@ -338,9 +349,10 @@ fun conditionBlock(){
                 fontWeight = FontWeight.ExtraBold
             )
         }
-        Row(verticalAlignment = Alignment.CenterVertically,
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
-        ){
+        ) {
             Box(
                 modifier = Modifier
                     .width(200.dp)
@@ -349,9 +361,18 @@ fun conditionBlock(){
                         color = Color(0xFFFDA728),
                         shape = RoundedCornerShape(10.dp)
                     )
-            ){}
+            ) {}
         }
 
     }
-
+}
+@Composable
+fun drawBlock(block:BlockUiItem){
+    when (block.id) {
+        "1" -> return variableBlock()
+        "2" -> return assignBlock()
+        "3" -> return operationBlock()
+        "4" -> return printBlock()
+        "5" -> return conditionBlock()
+    }
 }

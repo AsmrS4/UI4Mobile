@@ -4,6 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -32,14 +34,13 @@ fun MainScreen(
         modifier = Modifier
             .fillMaxSize()
             .padding(5.dp),
-        verticalArrangement = Arrangement.spacedBy(50.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         DropItem<BlockUiItem>(
-//поле для сброса блоков
             modifier = Modifier
                 .fillMaxWidth(1f)
-                .fillMaxHeight(0.75f),
+                .fillMaxHeight(0.8f),
 
             ) { isInBound, blockItem ->
             if (blockItem != null) {
@@ -47,51 +48,20 @@ fun MainScreen(
                     mainViewModel.addBlock(blockItem)
                 }
             }
-            if (isInBound) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(Color.Gray.copy(0.5f), RoundedCornerShape(10.dp))
-                        .border(1.dp, color = Color.White, shape = RoundedCornerShape(10.dp))
-                        .padding(20.dp)
-                        .verticalScroll(rememberScrollState())
-                        .horizontalScroll(rememberScrollState()),
-                    horizontalAlignment = Alignment.Start,
-
-                    ) {
-                    mainViewModel.addedBlocks.forEach { block ->//нужно будет из addedBlocks получить строковый контент в блоках
-                        when (block.id) {
-                            "1" -> variableBlock()
-                            "2" -> assignBlock()
-                            "3" -> operationBlock()
-                            "4" -> printBlock()
-                            "5" -> conditionBlock()
-                        }
-                        Spacer(modifier = Modifier.padding(1.dp))
-                    }
-                }
-            } else {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(Color.Black.copy(0.5f), RoundedCornerShape(10.dp))
-                        .border(1.dp, color = Color.White, shape = RoundedCornerShape(10.dp))
-                        .padding(20.dp)
-                        .verticalScroll(rememberScrollState())
-                        .horizontalScroll(rememberScrollState()),
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(0.5f), RoundedCornerShape(10.dp))
+                    .border(1.dp, color = Color.White, shape = RoundedCornerShape(10.dp))
+                    .padding(20.dp)
+                    .verticalScroll(rememberScrollState())
+                    .horizontalScroll(rememberScrollState()),
                     horizontalAlignment = Alignment.Start
+
                 ) {
                     mainViewModel.addedBlocks.forEach { block ->
-                        when (block.id) {
-                            "1" -> variableBlock()
-                            "2" -> assignBlock()
-                            "3" -> operationBlock()
-                            "4" -> printBlock()
-                            "5" -> conditionBlock()
-                        }
-                        Spacer(modifier = Modifier.padding(1.dp))
+                        drawBlock(block)
                     }
-                }
             }
         }
 
@@ -99,7 +69,6 @@ fun MainScreen(
             text = "blocks container",
             modifier = Modifier.padding(15.dp)
         ) {
-
 
             Row(//поле с блоками
                 modifier = Modifier
