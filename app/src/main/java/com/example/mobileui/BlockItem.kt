@@ -73,7 +73,7 @@ fun variableBlock() {
             Alignment.Center
         ){
             BasicTextField(
-                modifier = Modifier.widthIn(80.dp).padding(10.dp),
+                modifier = Modifier.widthIn(60.dp).padding(6.dp),
                 value = inputData.value,
                 textStyle = androidx.compose.ui.text.TextStyle(fontSize = 20.sp),
                 onValueChange = { newText ->
@@ -89,18 +89,19 @@ fun variableBlock() {
 fun assignBlock() {
     var inputVar = remember { mutableStateOf("") }
     var inputData = remember { mutableStateOf("") }
-
-    Row(modifier = Modifier
-        .background(
-            color = Color(0xFFF44336),
-            shape = RoundedCornerShape(12.dp),
-        )
-        .border(
-            width = 3.dp, color = Color.White,
-            shape = RoundedCornerShape(12.dp),
-        )
-        .padding(10.dp),
+    Row(
+        modifier = Modifier
+            .background(
+                color = Color(0xFFF44336),
+                shape = RoundedCornerShape(12.dp),
+            )
+            .border(
+                width = 3.dp, color = Color.White,
+                shape = RoundedCornerShape(12.dp),
+            )
+            .padding(10.dp),
         verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
 
         Box(modifier = Modifier
@@ -108,7 +109,7 @@ fun assignBlock() {
             Alignment.Center
         ){
             BasicTextField(
-                modifier = Modifier.widthIn(80.dp).padding(10.dp),
+                modifier = Modifier.widthIn(60.dp).padding(6.dp),
                 value = inputVar.value,
                 textStyle = androidx.compose.ui.text.TextStyle(fontSize = 20.sp),
                 onValueChange = { newText ->
@@ -117,7 +118,7 @@ fun assignBlock() {
             )
         }
         Text(
-            modifier = Modifier.padding(10.dp),
+            modifier = Modifier.padding(start=10.dp, end=10.dp),
             text = "=",
             fontSize = 22.sp,
             color = Color.White,
@@ -128,7 +129,7 @@ fun assignBlock() {
             Alignment.Center
         ){
             BasicTextField(
-                modifier = Modifier.widthIn(80.dp).padding(10.dp),
+                modifier = Modifier.widthIn(60.dp).padding(6.dp),
                 value = inputData.value,
                 textStyle = androidx.compose.ui.text.TextStyle(fontSize = 20.sp),
                 onValueChange = { newText ->
@@ -170,7 +171,7 @@ fun inputBlock() {
             Alignment.Center
         ){
             BasicTextField(
-                modifier = Modifier.widthIn(80.dp).padding(10.dp),
+                modifier = Modifier.widthIn(60.dp).padding(6.dp),
                 value = inputData.value,
                 textStyle = androidx.compose.ui.text.TextStyle(fontSize = 20.sp),
                 onValueChange = { newText ->
@@ -212,7 +213,7 @@ fun operationBlock() {
             Alignment.Center
         ){
             BasicTextField(
-                modifier = Modifier.widthIn(80.dp).padding(10.dp),
+                modifier = Modifier.widthIn(60.dp).padding(6.dp),
                 value = inputData.value,
                 textStyle = androidx.compose.ui.text.TextStyle(fontSize = 20.sp),
                 onValueChange = { newText ->
@@ -254,7 +255,7 @@ fun printBlock() {
             Alignment.Center
         ){
             BasicTextField(
-                modifier = Modifier.widthIn(80.dp).padding(10.dp),
+                modifier = Modifier.widthIn(60.dp).padding(6.dp),
                 value = inputData.value,
                 textStyle = androidx.compose.ui.text.TextStyle(fontSize = 20.sp),
                 onValueChange = { newText ->
@@ -301,7 +302,7 @@ fun conditionBlock() {
                 Alignment.Center
             ){
                 BasicTextField(
-                    modifier = Modifier.widthIn(80.dp).padding(10.dp),
+                    modifier = Modifier.widthIn(60.dp).padding(6.dp),
                     value = condition.value,
                     textStyle = androidx.compose.ui.text.TextStyle(fontSize = 20.sp),
                     onValueChange = { newText ->
