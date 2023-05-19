@@ -42,7 +42,7 @@ fun MainScreen(
                 .fillMaxWidth(1f)
                 .fillMaxHeight(0.8f),
 
-            ) { isInBound, blockItem ->
+            ) { _, blockItem ->
             if (blockItem != null) {
                 LaunchedEffect(key1 = blockItem) {
                     mainViewModel.addBlock(blockItem)
@@ -61,7 +61,9 @@ fun MainScreen(
                 ) {
                     mainViewModel.addedBlocks.forEach { block ->
                         drawBlock(block)
+                        Spacer(modifier = Modifier.padding(bottom = 1.dp))
                     }
+
             }
         }
 

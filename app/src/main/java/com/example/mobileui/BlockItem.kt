@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
@@ -34,11 +35,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.runtime.remember
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import java.time.format.TextStyle
 
 
 @OptIn(ExperimentalMaterial3Api::class)
-//@Preview
+@Preview
 @Composable
 fun variableBlock() {
     var inputData = remember { mutableStateOf("") }
@@ -64,21 +67,19 @@ fun variableBlock() {
 
             fontWeight = FontWeight.ExtraBold
         )
-        TextField(
-            modifier = Modifier
-                .widthIn(50.dp),
-            value = inputData.value,
-            shape = RoundedCornerShape(8.dp),
-            colors = TextFieldDefaults.textFieldColors(
-                cursorColor = Color.LightGray,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-            ),
-            onValueChange = { newText ->
-                inputData.value = newText
-            },
-            singleLine = true
-        )
+        Box(modifier = Modifier
+            .widthIn(120.dp)
+            .background(color = Color.White, shape = RoundedCornerShape(10.dp)),
+            Alignment.Center
+        ){
+            BasicTextField(
+                modifier = Modifier.widthIn(80.dp).padding(10.dp),
+                value = inputData.value,
+                textStyle = androidx.compose.ui.text.TextStyle(fontSize = 20.sp),
+                onValueChange = { newText ->
+                    inputData.value = newText },
+            )
+        }
     }
 }
 
@@ -89,60 +90,49 @@ fun assignBlock() {
     var inputVar = remember { mutableStateOf("") }
     var inputData = remember { mutableStateOf("") }
 
-    Box(
-        modifier = Modifier
-            .background(
-                color = Color(0xFFF44336),
-                shape = RoundedCornerShape(12.dp),
-            )
-            .border(
-                width = 3.dp, color = Color.White,
-                shape = RoundedCornerShape(12.dp),
-            )
-            .padding(10.dp)
+    Row(modifier = Modifier
+        .background(
+            color = Color(0xFFF44336),
+            shape = RoundedCornerShape(12.dp),
+        )
+        .border(
+            width = 3.dp, color = Color.White,
+            shape = RoundedCornerShape(12.dp),
+        )
+        .padding(10.dp),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
 
-            TextField(
-                modifier = Modifier
-                    .widthIn(50.dp),
+        Box(modifier = Modifier
+            .background(color = Color.White, shape = RoundedCornerShape(10.dp)),
+            Alignment.Center
+        ){
+            BasicTextField(
+                modifier = Modifier.widthIn(80.dp).padding(10.dp),
                 value = inputVar.value,
-                shape = RoundedCornerShape(8.dp),
-                colors = TextFieldDefaults.textFieldColors(
-                    cursorColor = Color.LightGray,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent
-                ),
+                textStyle = androidx.compose.ui.text.TextStyle(fontSize = 20.sp),
                 onValueChange = { newText ->
-                    inputVar.value = newText
-                },
+                    inputVar.value = newText },
                 singleLine = true
             )
-            Text(
-                modifier = Modifier.padding(10.dp),
-                text = "=",
-                fontSize = 22.sp,
-                color = Color.White,
-
-                fontWeight = FontWeight.ExtraBold
-            )
-            TextField(
-                modifier = Modifier
-                    .widthIn(50.dp),
+        }
+        Text(
+            modifier = Modifier.padding(10.dp),
+            text = "=",
+            fontSize = 22.sp,
+            color = Color.White,
+            fontWeight = FontWeight.ExtraBold
+        )
+        Box(modifier = Modifier
+            .background(color = Color.White, shape = RoundedCornerShape(10.dp)),
+            Alignment.Center
+        ){
+            BasicTextField(
+                modifier = Modifier.widthIn(80.dp).padding(10.dp),
                 value = inputData.value,
-                shape = RoundedCornerShape(8.dp),
-                colors = TextFieldDefaults.textFieldColors(
-                    cursorColor = Color.Black,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent
-                ),
+                textStyle = androidx.compose.ui.text.TextStyle(fontSize = 20.sp),
                 onValueChange = { newText ->
-                    inputData.value = newText
-                },
-                singleLine = true,
+                    inputData.value = newText },
             )
         }
     }
@@ -174,21 +164,19 @@ fun inputBlock() {
 
             fontWeight = FontWeight.ExtraBold
         )
-        TextField(
-            modifier = Modifier
-                .widthIn(50.dp),
-            value = inputData.value,
-            shape = RoundedCornerShape(8.dp),
-            colors = TextFieldDefaults.textFieldColors(
-                cursorColor = Color.LightGray,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
-            ),
-            onValueChange = { newText ->
-                inputData.value = newText
-            },
-            singleLine = true
-        )
+        Box(modifier = Modifier
+            .widthIn(80.dp)
+            .background(color = Color.White, shape = RoundedCornerShape(10.dp)),
+            Alignment.Center
+        ){
+            BasicTextField(
+                modifier = Modifier.widthIn(80.dp).padding(10.dp),
+                value = inputData.value,
+                textStyle = androidx.compose.ui.text.TextStyle(fontSize = 20.sp),
+                onValueChange = { newText ->
+                    inputData.value = newText
+                }, )
+        }
     }
 }
 
@@ -218,21 +206,19 @@ fun operationBlock() {
 
             fontWeight = FontWeight.ExtraBold
         )
-        TextField(
-            modifier = Modifier
-                .widthIn(50.dp),
-            value = inputData.value,
-            shape = RoundedCornerShape(8.dp),
-            colors = TextFieldDefaults.textFieldColors(
-                cursorColor = Color.LightGray,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
-            ),
-            onValueChange = { newText ->
-                inputData.value = newText
-            },
-            singleLine = true
-        )
+        Box(modifier = Modifier
+            .widthIn(80.dp)
+            .background(color = Color.White, shape = RoundedCornerShape(10.dp)),
+            Alignment.Center
+        ){
+            BasicTextField(
+                modifier = Modifier.widthIn(80.dp).padding(10.dp),
+                value = inputData.value,
+                textStyle = androidx.compose.ui.text.TextStyle(fontSize = 20.sp),
+                onValueChange = { newText ->
+                    inputData.value = newText
+                }, )
+        }
     }
 }
 
@@ -262,21 +248,19 @@ fun printBlock() {
 
             fontWeight = FontWeight.ExtraBold
         )
-        TextField(
-            modifier = Modifier
-                .widthIn(50.dp),
-            value = inputData.value,
-            shape = RoundedCornerShape(8.dp),
-            colors = TextFieldDefaults.textFieldColors(
-                cursorColor = Color.LightGray,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
-            ),
-            onValueChange = { newText ->
-                inputData.value = newText
-            },
-            singleLine = true
-        )
+        Box(modifier = Modifier
+            .widthIn(80.dp)
+            .background(color = Color.White, shape = RoundedCornerShape(10.dp)),
+            Alignment.Center
+        ){
+            BasicTextField(
+                modifier = Modifier.widthIn(80.dp).padding(10.dp),
+                value = inputData.value,
+                textStyle = androidx.compose.ui.text.TextStyle(fontSize = 20.sp),
+                onValueChange = { newText ->
+                    inputData.value = newText
+                }, )
+        }
     }
 }
 
@@ -311,15 +295,19 @@ fun conditionBlock() {
 
                 fontWeight = FontWeight.ExtraBold
             )
-            Box(
-                modifier = Modifier
-                    .width(200.dp)
-                    .height(50.dp)
-                    .background(
-                        color = Color.White,
-                        shape = RoundedCornerShape(30.dp)
-                    )
-            ) {}
+            Box(modifier = Modifier
+                .widthIn(80.dp)
+                .background(color = Color.White, shape = RoundedCornerShape(10.dp)),
+                Alignment.Center
+            ){
+                BasicTextField(
+                    modifier = Modifier.widthIn(80.dp).padding(10.dp),
+                    value = condition.value,
+                    textStyle = androidx.compose.ui.text.TextStyle(fontSize = 20.sp),
+                    onValueChange = { newText ->
+                        condition.value = newText },
+                )
+            }
         }
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -366,6 +354,7 @@ fun conditionBlock() {
 
     }
 }
+
 @Composable
 fun drawBlock(block:BlockUiItem){
     when (block.id) {

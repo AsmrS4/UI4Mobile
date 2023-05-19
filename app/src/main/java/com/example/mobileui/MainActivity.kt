@@ -23,8 +23,6 @@ class MainActivity : ComponentActivity() {
             ) {
                 MainScreen(viewModel)
             }
-
-
         }
     }
 }
