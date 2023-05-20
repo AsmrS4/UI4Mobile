@@ -21,13 +21,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
     mainViewModel: MainViewModel,
-
 ) {
     val screenWidth = LocalConfiguration.current.screenWidthDp
     Column(
@@ -63,7 +63,6 @@ fun MainScreen(
                         drawBlock(block)
                         Spacer(modifier = Modifier.padding(bottom = 1.dp))
                     }
-
             }
         }
 

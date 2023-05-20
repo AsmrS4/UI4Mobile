@@ -10,7 +10,7 @@ import androidx.compose.ui.graphics.Color
 
 class MainActivity : ComponentActivity() {
 
-    private val viewModel = MainViewModel()
+    private val mViewModel = MainViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val mainViewModel = MainViewModel()
@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
                     .fillMaxSize()
                     .background(Color.Black.copy(0.8f))
             ) {
-                MainScreen(viewModel)
+                MainScreen(mViewModel)
             }
         }
     }
