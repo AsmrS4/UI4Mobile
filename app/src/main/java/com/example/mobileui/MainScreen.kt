@@ -13,6 +13,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -23,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -30,17 +33,33 @@ fun MainScreen(
     mainViewModel: MainViewModel,
 ) {
     val screenWidth = LocalConfiguration.current.screenWidthDp
+    var result = remember{ mutableStateOf("") }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(5.dp),
+            .padding(top = 20.dp, start = 5.dp, end = 5.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Column(  modifier = Modifier
+            .fillMaxHeight(0.2f)
+            .fillMaxWidth()
+            .background(Color.Black.copy(0.5f), RoundedCornerShape(10.dp))
+            .border(1.dp, color = Color.White, shape = RoundedCornerShape(10.dp))
+            .padding(20.dp)
+            .verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.Start
+            ){
+            Text(text = result.value,
+                fontSize=16.sp,
+                color = Color.White
+            )
+        }
         DropItem<BlockUiItem>(
             modifier = Modifier
                 .fillMaxWidth(1f)
-                .fillMaxHeight(0.8f),
+                .fillMaxHeight(0.75f),
 
             ) { _, blockItem ->
             if (blockItem != null) {
@@ -60,18 +79,25 @@ fun MainScreen(
 
                 ) {
                     mainViewModel.addedBlocks.forEach { block ->
-                        drawBlock(block)
+                        when (block.id) {
+                            "1" -> Variable().variableBlock()
+                            "2" -> Assign().assignBlock()
+                            "3" -> Operation().operationBlock()
+                            "4" -> Print().printBlock()
+                            "5" -> ConditionBlock().conditionBlock()
+                        }
                         Spacer(modifier = Modifier.padding(bottom = 1.dp))
                     }
             }
         }
 
         DropDown(
-            text = "blocks container",
-            modifier = Modifier.padding(15.dp)
+            result,
+            mainViewModel,
+            modifier = Modifier.padding(10.dp)
         ) {
 
-            Row(//поле с блоками
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .horizontalScroll(rememberScrollState()),

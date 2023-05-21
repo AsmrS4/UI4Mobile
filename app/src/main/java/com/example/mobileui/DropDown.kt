@@ -1,5 +1,6 @@
 package com.example.mobileui
 
+import android.graphics.Paint.Align
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
@@ -8,13 +9,22 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.Build
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,7 +41,8 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun DropDown(
-    text: String,
+    result: MutableState<String>,
+    viewModel: MainViewModel,
     modifier: Modifier = Modifier,
     initiallyOpened: Boolean = false,
     content: @Composable () -> Unit
@@ -50,7 +61,7 @@ fun DropDown(
     val rotateX = animateFloatAsState(
         targetValue = if(isOpen) 0f else 90f,
         animationSpec = tween(
-            durationMillis = 300
+            durationMillis = 200
         )
     )
 
@@ -71,30 +82,42 @@ fun DropDown(
             content()
         }
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
+
         ) {
-            Text(
-                text = text,
-                color = Color.White,
-                fontSize = 16.sp
-            )
+
             Icon(
-                imageVector = Icons.Default.ArrowDropDown,
-                contentDescription = "Open or close the drop down",
+                imageVector = Icons.Default.PlayArrow,
+                contentDescription = "Start button",
                 tint = Color.White,
                 modifier = Modifier
                     .clickable {
-                        isOpen = !isOpen
+                        result.value = "Result:\n>> "+"Hello World!"
                     }
-                    .scale(1f, if (!isOpen) -1f else 1f)
+            )
+            Icon(
+                imageVector = Icons.Default.Refresh,
+                contentDescription = "Clear",
+                tint = Color.White,
+                modifier = Modifier
+                    .clickable {
+                        viewModel.addedBlocks.clear()
+                        result.value = ""
+                    }
+            )
+            Icon(
+                imageVector = Icons.Default.Menu,
+                contentDescription = "Open or close the drop down",
+                tint = Color.White,
+                modifier = Modifier
+                    .clickable { isOpen = !isOpen },
             )
         }
-
     }
 }

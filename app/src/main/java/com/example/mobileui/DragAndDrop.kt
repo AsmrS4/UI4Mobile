@@ -3,6 +3,8 @@ package com.example.mobileui
 import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -96,7 +98,7 @@ fun <T> DragTarget(
 @Composable
 fun <T> DropItem(
     modifier: Modifier,
-    content: @Composable() (BoxScope.(isInBound: Boolean, data: T?) -> Unit)
+    content: @Composable() (ColumnScope.(isInBound: Boolean, data: T?) -> Unit)
 ) {
 
     val dragInfo = LocalDragTargetInfo.current
@@ -106,7 +108,7 @@ fun <T> DropItem(
         mutableStateOf(false)
     }
 
-    Box(modifier = modifier.onGloballyPositioned {
+    Column(modifier = modifier.onGloballyPositioned {
         it.boundsInWindow().let { rect ->
             isCurrentDropTarget = rect.contains(dragPosition + dragOffset)
         }
