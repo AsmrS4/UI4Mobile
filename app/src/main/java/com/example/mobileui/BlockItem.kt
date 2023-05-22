@@ -52,6 +52,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
@@ -64,7 +65,7 @@ class Variable{
     @Preview
     @Composable
     fun variableBlock(index:Int,viewMod:MainViewModel) {
-        var inputData = remember { mutableStateOf("") }
+        var inputData = rememberSaveable { mutableStateOf("") }
         Row(
             modifier = Modifier
                 .background(
@@ -129,8 +130,8 @@ class Assign{
     @Preview
     @Composable
     fun assignBlock(index:Int,viewMod:MainViewModel) {
-        var inputVar = remember { mutableStateOf("") }
-        var inputData = remember { mutableStateOf("") }
+        var inputVar = rememberSaveable { mutableStateOf("") }
+        var inputData = rememberSaveable { mutableStateOf("") }
         Row(
             modifier = Modifier
                 .background(
@@ -211,7 +212,7 @@ class Input{
     @Preview
     @Composable
     fun inputBlock(index:Int,viewMod:MainViewModel) {
-        var inputData = remember { mutableStateOf("") }
+        var inputData = rememberSaveable { mutableStateOf("") }
         var isClicked:Boolean = false;
         Row(
             modifier = Modifier
@@ -273,12 +274,11 @@ class Input{
 }
 
 class Operation{
-    var isClicked:Boolean=false
     @OptIn(ExperimentalMaterial3Api::class)
     @Preview
     @Composable
     fun operationBlock(index:Int,viewMod:MainViewModel) {
-        var inputData = remember { mutableStateOf("") }
+        var inputData = rememberSaveable { mutableStateOf("") }
         var isClicked:Boolean = false;
         Row(
             modifier = Modifier
@@ -341,12 +341,11 @@ class Operation{
 
 }
 class Print{
-    var isClicked:Boolean=false
     @OptIn(ExperimentalMaterial3Api::class)
     @Preview
     @Composable
     fun printBlock(index:Int,viewMod:MainViewModel) {
-        var inputData = remember { mutableStateOf("") }
+        var inputData = rememberSaveable { mutableStateOf("") }
         Row(
             modifier = Modifier
                 .background(
@@ -407,7 +406,6 @@ class Print{
 }
 
 class ConditionBlock{
-    var isClicked:Boolean=false
     var isInIf:Boolean = false
     var isInElse:Boolean = false
     @OptIn(ExperimentalMaterial3Api::class)
@@ -416,7 +414,7 @@ class ConditionBlock{
     fun conditionBlock(index:Int,viewMod:MainViewModel){
         var ifViewModel = MainViewModel()
         var elseViewModel = MainViewModel()
-        var condition = remember { mutableStateOf("") }
+        var condition = rememberSaveable { mutableStateOf("") }
         Column(
             modifier = Modifier
                 .background(
@@ -473,7 +471,7 @@ class ConditionBlock{
                             .background(color = Color(0xFFFFB240), shape = CircleShape)
                     )
                     if(checked.value){
-                        isClicked=true
+                        viewMod.addedBlocks.removeAt(index)
                     }
                 }
             }
