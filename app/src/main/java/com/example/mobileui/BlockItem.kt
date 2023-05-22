@@ -60,13 +60,11 @@ import java.time.format.TextStyle
 
 
 class Variable{
-    var isClicked:Boolean=false
     @OptIn(ExperimentalMaterial3Api::class)
     @Preview
     @Composable
-    fun variableBlock() {
+    fun variableBlock(index:Int,viewMod:MainViewModel) {
         var inputData = remember { mutableStateOf("") }
-        var isClicked:Boolean = false;
         Row(
             modifier = Modifier
                 .background(
@@ -119,7 +117,7 @@ class Variable{
                         .background(color = Color(0xFF945EF5), shape = CircleShape)
                 )
                 if(checked.value){
-                    isClicked=true
+                    viewMod.addedBlocks.removeAt(index)
                 }
             }
         }
@@ -127,14 +125,12 @@ class Variable{
 }
 
 class Assign{
-    var isClicked:Boolean=false
     @OptIn(ExperimentalMaterial3Api::class)
     @Preview
     @Composable
-    fun assignBlock() {
+    fun assignBlock(index:Int,viewMod:MainViewModel) {
         var inputVar = remember { mutableStateOf("") }
         var inputData = remember { mutableStateOf("") }
-        var isClicked:Boolean = false;
         Row(
             modifier = Modifier
                 .background(
@@ -203,7 +199,7 @@ class Assign{
                         .background(color = Color(0xFFFF5A4E), shape = CircleShape)
                 )
                 if(checked.value){
-                    isClicked=true
+                    viewMod.addedBlocks.removeAt(index)
                 }
             }
         }
@@ -211,11 +207,10 @@ class Assign{
 }
 
 class Input{
-    var isClicked:Boolean=false
     @OptIn(ExperimentalMaterial3Api::class)
     @Preview
     @Composable
-    fun inputBlock() {
+    fun inputBlock(index:Int,viewMod:MainViewModel) {
         var inputData = remember { mutableStateOf("") }
         var isClicked:Boolean = false;
         Row(
@@ -270,7 +265,7 @@ class Input{
                         .background(color = Color(0xFF5A72F8), shape = CircleShape)
                 )
                 if(checked.value){
-                    isClicked=true
+                    viewMod.addedBlocks.removeAt(index)
                 }
             }
         }
@@ -282,7 +277,7 @@ class Operation{
     @OptIn(ExperimentalMaterial3Api::class)
     @Preview
     @Composable
-    fun operationBlock() {
+    fun operationBlock(index:Int,viewMod:MainViewModel) {
         var inputData = remember { mutableStateOf("") }
         var isClicked:Boolean = false;
         Row(
@@ -337,7 +332,7 @@ class Operation{
                         .background(color = Color(0xFF2A8B2E), shape = CircleShape)
                 )
                 if(checked.value){
-                    isClicked=true
+                    viewMod.addedBlocks.removeAt(index)
                 }
             }
 
@@ -350,7 +345,7 @@ class Print{
     @OptIn(ExperimentalMaterial3Api::class)
     @Preview
     @Composable
-    fun printBlock() {
+    fun printBlock(index:Int,viewMod:MainViewModel) {
         var inputData = remember { mutableStateOf("") }
         Row(
             modifier = Modifier
@@ -404,7 +399,7 @@ class Print{
                         .background(color = Color(0xFF22BBFF), shape = CircleShape)
                 )
                 if(checked.value){
-                    isClicked=true
+                    viewMod.addedBlocks.removeAt(index)
                 }
             }
         }
@@ -418,7 +413,7 @@ class ConditionBlock{
     @OptIn(ExperimentalMaterial3Api::class)
     @Preview
     @Composable
-    fun conditionBlock(){
+    fun conditionBlock(index:Int,viewMod:MainViewModel){
         var ifViewModel = MainViewModel()
         var elseViewModel = MainViewModel()
         var condition = remember { mutableStateOf("") }
@@ -509,10 +504,10 @@ class ConditionBlock{
                     ) {
                         ifViewModel.addedBlocks.forEach{block ->
                             when (block.id) {
-                                "1" -> Variable().variableBlock()
-                                "2" -> Assign().assignBlock()
-                                "3" -> Operation().operationBlock()
-                                "4" -> Print().printBlock()
+                                //"1" -> Variable().variableBlock()
+                                //"2" -> Assign().assignBlock()
+                                //"3" -> Operation().operationBlock()
+                                //"4" -> Print().printBlock()
                             }
                             Spacer(modifier = Modifier.padding(bottom = 1.dp))
                         }
@@ -559,10 +554,10 @@ class ConditionBlock{
                     ) {
                         elseViewModel.addedBlocks.forEach{ block ->
                             when (block.id) {
-                                "1" -> Variable().variableBlock()
-                                "2" -> Assign().assignBlock()
-                                "3" -> Operation().operationBlock()
-                                "4" -> Print().printBlock()
+                                //"1" -> Variable().variableBlock()
+                                //"2" -> Assign().assignBlock()
+                                //"3" -> Operation().operationBlock()
+                                //"4" -> Print().printBlock()
                             }
                             Spacer(modifier = Modifier.padding(bottom = 1.dp))
                         }

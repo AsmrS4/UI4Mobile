@@ -88,11 +88,11 @@ fun MainScreen(
                 ) {
                     itemsIndexed(mainViewModel.addedBlocks){index, block ->
                         when(block.id){
-                            "1" -> Variable().variableBlock()
-                            "2" -> Assign().assignBlock()
-                            "3" -> Operation().operationBlock()
-                            "4" -> Print().printBlock()
-                            "5" -> ConditionBlock().conditionBlock()
+                            "1" -> Variable().variableBlock(index,mainViewModel)
+                            "2" -> Assign().assignBlock(index,mainViewModel)
+                            "3" -> Operation().operationBlock(index,mainViewModel)
+                            "4" -> Print().printBlock(index,mainViewModel)
+                            "5" -> ConditionBlock().conditionBlock(index,mainViewModel)
                         }
                         Spacer(modifier = Modifier.padding(bottom = 1.dp))
                     }
