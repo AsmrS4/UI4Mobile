@@ -2,14 +2,22 @@ package com.example.mobileui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -67,19 +75,19 @@ fun MainScreen(
                     mainViewModel.addBlock(blockItem)
                 }
             }
-            Column(
+
+            LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
                     .background(Color.Black.copy(0.5f), RoundedCornerShape(10.dp))
                     .border(1.dp, color = Color.White, shape = RoundedCornerShape(10.dp))
-                    .padding(20.dp)
-                    .verticalScroll(rememberScrollState())
+                    .padding(10.dp)
                     .horizontalScroll(rememberScrollState()),
                     horizontalAlignment = Alignment.Start
 
                 ) {
-                    mainViewModel.addedBlocks.forEach { block ->
-                        when (block.id) {
+                    itemsIndexed(mainViewModel.addedBlocks){index, block ->
+                        when(block.id){
                             "1" -> Variable().variableBlock()
                             "2" -> Assign().assignBlock()
                             "3" -> Operation().operationBlock()
@@ -88,8 +96,8 @@ fun MainScreen(
                         }
                         Spacer(modifier = Modifier.padding(bottom = 1.dp))
                     }
+                }
             }
-        }
 
         DropDown(
             result,
